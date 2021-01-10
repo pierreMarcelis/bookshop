@@ -8,7 +8,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -81,8 +80,6 @@ public class DataExcellReader {
     }
 
     private  static  String getCellValue(Cell cell) {
-
-
         if(cell == null) return "";
         switch (cell.getCellType()) {
             default: return "";
@@ -96,4 +93,4 @@ public class DataExcellReader {
             case FORMULA:  return  cell.getCellFormula();
         }
     }
-    }
+}
