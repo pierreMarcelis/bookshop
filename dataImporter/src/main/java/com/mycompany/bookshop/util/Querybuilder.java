@@ -1,7 +1,6 @@
 package com.mycompany.bookshop.util;
 
 import com.mycompany.bookshop.domain.Book;
-import com.mycompany.bookshop.domain.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ public class Querybuilder {
     }
 
     public static String buildQuery(Book book) {
-        String query = "INSERT INTO books (isbn, title, author, language, organisation, departement, status, addresstype, address, postnumber, postbox, postcode, city, workgsm, accountnr, accountname, profile, privategsm, startDate, endDate, profiledescription, remarks) VALUES ('";
+        String query = "INSERT INTO books (isbn, title, author, editionYear, price) VALUES ('";
         String comma = "', '";
         String finalChars = "');";
         StringBuilder st = new StringBuilder();

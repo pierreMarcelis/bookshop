@@ -72,44 +72,4 @@ public class DataExcellReader {
             fis.close();
         return books;
     }
-/*
-    public static boolean isFormatedDate(String date) {
-        if(StringUtils.isAllEmpty(date)) return false;
-        return  Pattern.matches("[0-9]{2}-[0-9]{2}-[0-9]{2}",date);
-   }
-
-
-    public static boolean isCellEmpty(final Cell cell) {
-        if (cell == null) { // use row.getCell(x, Row.CREATE_NULL_AS_BLANK) to avoid null cells
-            return true;
-        }
-
-        if (cell.getCellType() == CellType.BLANK) {
-            return true;
-        }
-
-        if (cell.getCellType() == CellType.STRING && cell.getStringCellValue().trim().isEmpty()) {
-            return true;
-        }
-        return false;
-    }
-
-    private  static  String getCellValue(Cell cell) {
-        if(isCellEmpty(cell)) return "";
-        switch (cell.getCellType()) {
-            default: return "";
-            case STRING: {
-
-                return cell.getRichStringCellValue().getString();
-            }
-            case NUMERIC:
-                if (DateUtil.isCellDateFormatted(cell)) {
-                    return cell.getDateCellValue().toString();
-                } else {
-                    return  Double.toString(cell.getNumericCellValue());
-                }
-            case BOOLEAN:  return  Boolean.toString(cell.getBooleanCellValue());
-            case FORMULA:  return  cell.getCellFormula().toString();
-            case BLANK:  return  "";
-        }*/
     }
