@@ -19,8 +19,8 @@ public class DataExcellReader {
 
     public static List<Book> readExcelData(String fileName) throws Exception {
         List<Book> books = new ArrayList<Book>();
-
-        File file = new File(fileName);
+        ClassLoader classLoader = DataExcellReader.class.getClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
         FileInputStream fis = new FileInputStream(file);
 
         Workbook workbook = null;
@@ -30,11 +30,11 @@ public class DataExcellReader {
         } else if (fileName.toLowerCase().endsWith("xls")) {
             workbook = new HSSFWorkbook(fis);
         }
-        Sheet personeelDataSheet = workbook.getSheet("Books");
+        Sheet bookslDataSheet = workbook.getSheet("Books");
         Row row;
         Cell cell;
 
-        Iterator<Row> rows = personeelDataSheet.rowIterator();
+        Iterator<Row> rows = bookslDataSheet.rowIterator();
         int rowIndex = 0;
         while (rows.hasNext()) {
             row = rows.next();
@@ -65,8 +65,8 @@ public class DataExcellReader {
                     }
                     books.add(book);
                 }
-                rowIndex++;
             }
+            rowIndex++;
         }
             workbook.close();
             fis.close();
