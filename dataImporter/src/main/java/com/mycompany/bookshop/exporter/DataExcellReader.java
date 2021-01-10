@@ -31,8 +31,6 @@ public class DataExcellReader {
         }
         Sheet bookslDataSheet = workbook.getSheet("Books");
 
-
-
         Iterator<Row> rows = bookslDataSheet.rowIterator();
         int rowIndex = 0;
         while (rows.hasNext()) {
