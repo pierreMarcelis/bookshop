@@ -41,7 +41,9 @@ public class DataExcellReader {
                 Book book = new Book();
                 for (int indexCell = 0; indexCell < row.getLastCellNum(); indexCell++) {
                     cell = row.getCell(indexCell, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-                    System.out.print(getCellValue(cell) + " \n");
+
+                    String value = getCellValue(cell);
+                    System.out.print(value + " \n");
                     switch (indexCell) {
                         default:
                             throw new Exception("Invalid souce file format");
@@ -54,11 +56,16 @@ public class DataExcellReader {
                         case 2:
                             book.setAuthor(getCellValue(cell));
                             break;
-                        case 3:
-                            book.setEditionYear(getCellValue(cell));
+                        case 3: {
+                            if(!StringUtils.isEmpty(value)) {
+                                book.setEditionYear(Integer.getInteger(getCellValue(cell)));
+                            }
                             break;
+                        }
                         case 4:
-                            book.setPrice(cell.getNumericCellValue());
+                            if(!StringUtils.isEmpty(value)) {
+                                book.setPrice(cell.getNumericCellValue());
+                            }
                             break;
                     }
                 }
@@ -71,28 +78,15 @@ public class DataExcellReader {
         return books;
     }
 
-
-    public static boolean isCellEmpty(final Cell cell) {
-        if (cell == null) { // use row.getCell(x, Row.CREATE_NULL_AS_BLANK) to avoid null cells
-            return true;
-        }
-
-        if (cell.getCellType() == CellType.BLANK) {
-            return true;
-        }
-
-        if (cell.getCellType() == CellType.STRING && cell.getStringCellValue().trim().isEmpty()) {
-            return true;
-        }
-        return false;
-    }
-
     private  static  String getCellValue(Cell cell) {
-        if(isCellEmpty(cell)) return "";
+        if(cell == null) return "";
         switch (cell.getCellType()) {
             default: return "";
             case BLANK:  return  "";
-            case STRING: return cell.getRichStringCellValue().getString();
+            case STRING: {
+                if(cell.getStringCellValue().trim().isEmpty()) return "";
+                return cell.getRichStringCellValue().getString();
+            }
             case NUMERIC: return  "" + cell.getNumericCellValue();
             case BOOLEAN:  return  Boolean.toString(cell.getBooleanCellValue());
             case FORMULA:  return  cell.getCellFormula();
