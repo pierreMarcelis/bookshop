@@ -7,9 +7,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Class.forName;
-
-
 public class JdbcDao {
 
 
