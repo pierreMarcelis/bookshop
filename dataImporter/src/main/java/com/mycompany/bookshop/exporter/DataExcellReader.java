@@ -8,6 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -58,7 +59,8 @@ public class DataExcellReader {
                             break;
                         case 3: {
                             if(!StringUtils.isEmpty(value)) {
-                                book.setEditionYear(Integer.getInteger(getCellValue(cell)));
+                                int year = (int) cell.getNumericCellValue();
+                                book.setEditionYear(year);
                             }
                             break;
                         }
@@ -79,6 +81,8 @@ public class DataExcellReader {
     }
 
     private  static  String getCellValue(Cell cell) {
+
+
         if(cell == null) return "";
         switch (cell.getCellType()) {
             default: return "";
@@ -87,7 +91,7 @@ public class DataExcellReader {
                 if(cell.getStringCellValue().trim().isEmpty()) return "";
                 return cell.getRichStringCellValue().getString();
             }
-            case NUMERIC: return  "" + cell.getNumericCellValue();
+            case NUMERIC: return  String.valueOf(cell.getNumericCellValue());
             case BOOLEAN:  return  Boolean.toString(cell.getBooleanCellValue());
             case FORMULA:  return  cell.getCellFormula();
         }
