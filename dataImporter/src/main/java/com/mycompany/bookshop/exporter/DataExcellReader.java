@@ -42,29 +42,29 @@ public class DataExcellReader {
                 Book book = new Book();
                 for (int indexCell = 0; indexCell < row.getLastCellNum(); indexCell++) {
                     cell = row.getCell(indexCell, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-                    System.out.print(cell.toString() + " ");
-                    String value = cell.toString();
+                    System.out.print(cell.getStringCellValue() + " ");
                     switch (indexCell) {
                         default:
                             throw new Exception("Invalid souce file format");
                         case 0:
-                            book.setIsbn(value);
+                            book.setIsbn(cell.getStringCellValue());
                             break;
                         case 1:
-                            book.setTitle(value);
+                            book.setTitle(cell.getStringCellValue());
                             break;
                         case 2:
-                            book.setAuthor(value);
+                            book.setAuthor(cell.getStringCellValue());
                             break;
                         case 3:
-                            book.setEditionYear(Integer.getInteger(value));
+                            book.setEditionYear(cell.getStringCellValue());
                             break;
                         case 4:
                             book.setPrice(cell.getNumericCellValue());
                             break;
                     }
-                    books.add(book);
+
                 }
+                books.add(book);
             }
             rowIndex++;
         }

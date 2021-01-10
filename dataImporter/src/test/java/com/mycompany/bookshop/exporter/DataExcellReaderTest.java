@@ -23,7 +23,7 @@ public  class DataExcellReaderTest {
             assertThat(book.getIsbn(), is("978-2263-16102-5"));
             assertThat(book.getTitle(), is("L'atlas du vélo"));
             assertThat(book.getAuthor(), is("Claude Droussent"));
-            assertThat(book.getEditionYear(), is(2019));
+            assertThat(book.getEditionYear(), is("2019"));
             assertThat(book.getPrice(), is(Double.parseDouble("24,9")));
 
         } catch (Exception e) {

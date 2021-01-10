@@ -5,7 +5,7 @@ public  class Book {
     private String isbn;
     private String  title;
     private String  author;
-    private Integer editionYear;
+    private String editionYear;
     private Double price;
 
     public String getIsbn() {
@@ -40,11 +40,11 @@ public  class Book {
         this.price = price;
     }
 
-    public Integer getEditionYear() {
+    public String getEditionYear() {
         return editionYear;
     }
 
-    public void setEditionYear(Integer editionYear) {
+    public void setEditionYear(String editionYear) {
         this.editionYear = editionYear;
     }
 }
