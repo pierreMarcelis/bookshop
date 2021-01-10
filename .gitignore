@@ -1,3 +1,7 @@
 /domain/target/
 /dataImporter/target/
-/domain/target/
+bookshoproot.iml
+/domain/domain.iml
+/dataImporter/dataImporter.iml
+/service/target
+/service/service.iml
