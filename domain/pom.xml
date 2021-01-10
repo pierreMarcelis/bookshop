@@ -4,9 +4,9 @@
     http://maven.apache.org/maven-v4_0_0.xsd">
 	
 	 <parent>
-        <groupId>com.mycompany.dataimporter</groupId>
-        <artifactId>dataimporterroot</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>com.mycompany.bookshop</groupId>
+         <artifactId>bookshoproot</artifactId>
+         <version>1.0-SNAPSHOT</version>
     </parent>
  
   <modelVersion>4.0.0</modelVersion>
@@ -16,14 +16,4 @@
   <url>http://maven.apache.org</url>
 
 
-  <build>
-
-
-    <plugins>
-
-
-
-  
-    </plugins>
-  </build>
 </project>
