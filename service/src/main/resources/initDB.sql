@@ -6,5 +6,5 @@ CREATE TABLE books (
 	title VARCHAR(255) NOT NULL,
 	author  VARCHAR(255) NOT NULL,
 	editionYear  VARCHAR(255) NULL,
-	price DECIMAL(6,2) NULL
+	price DECIMAL(4,2) NULL
 );

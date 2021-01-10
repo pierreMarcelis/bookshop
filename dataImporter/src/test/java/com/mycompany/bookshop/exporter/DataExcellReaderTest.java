@@ -24,10 +24,10 @@ public  class DataExcellReaderTest {
             assertThat(book.getTitle(), is("L'atlas du vélo"));
             assertThat(book.getAuthor(), is("Claude Droussent"));
             assertThat(book.getEditionYear(), is("2019"));
-            assertThat(book.getPrice(), is(Double.parseDouble("24,9")));
+            assertThat(book.getPrice(), is(Double.parseDouble("24.9")));
 
         } catch (Exception e) {
-            fail("Unable to load testcase");
+            fail("Unable to load testcase : " + e.getMessage());
         }
     }
 
