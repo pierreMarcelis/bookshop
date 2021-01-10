@@ -30,17 +30,17 @@ public class DataExcellReader {
             workbook = new HSSFWorkbook(fis);
         }
         Sheet bookslDataSheet = workbook.getSheet("Books");
-        Row row;
-        Cell cell;
+
+
 
         Iterator<Row> rows = bookslDataSheet.rowIterator();
         int rowIndex = 0;
         while (rows.hasNext()) {
-            row = rows.next();
+            Row row = rows.next();
             if (rowIndex != 0) {
                 Book book = new Book();
                 for (int indexCell = 0; indexCell < row.getLastCellNum(); indexCell++) {
-                    cell = row.getCell(indexCell, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+                   Cell cell = row.getCell(indexCell, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
 
                     String value = getCellValue(cell);
                     System.out.print(value + " \n");
