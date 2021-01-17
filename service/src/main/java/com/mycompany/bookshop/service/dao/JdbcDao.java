@@ -10,11 +10,42 @@ import java.util.List;
 public class JdbcDao {
 
 
-    public List<Book> getAllBooks() {
+
+
+    public  Long addBook(String isbn, String title,  String author, String editionYear, Double price) throws ClassNotFoundException {
+        System.out.println("MySQL JDBC Connection Testing ~");
+        Long idBook = 0L;
+        List<Book> result = new ArrayList<Book>();
+        String SQL_SELECT = "INSERT INTO BOOKS (ISBN, TITLE, AUTHOR, EDITIONYEAR, PRICE) VALUES (?,?,?,?, ?) ";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/bookshop?useUnicode=true\n" +
+                "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false\n" +
+                "serverTimezone=UTC", "root", "");
+            PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+            preparedStatement.setString(1, isbn);
+            preparedStatement.setString(2, title);
+            preparedStatement.setString(3, author);
+            preparedStatement.setString(4, author);
+            preparedStatement.setBigDecimal(5, new BigDecimal(price));
+
+            idBook = new Long(preparedStatement.executeUpdate());
+
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.format("Exception: %s\n%s", e.getMessage());
+        }
+        return  idBook;
+
+    }
+
+    public List<Book> getAllBooks() throws Exception {
         System.out.println("MySQL JDBC Connection Testing ~");
         List<Book> result = new ArrayList<Book>();
         String SQL_SELECT = "Select * from BOOKS";
-
+        Class.forName("com.mysql.cj.jdbc.Driver");
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/bookshop?useUnicode=true\n" +
                 "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false\n" +
                 "serverTimezone=UTC", "root", "");
