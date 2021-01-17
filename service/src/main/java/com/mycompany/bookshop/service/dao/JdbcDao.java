@@ -9,15 +9,11 @@ import java.util.List;
 
 public class JdbcDao {
 
-
-
-
-    public  Long addBook(String isbn, String title,  String author, String editionYear, Double price) throws ClassNotFoundException {
+    public  Long addBook(String isbn, String title,  String author, String editionYear, Double price) throws Exception {
         System.out.println("MySQL JDBC Connection Testing ~");
         Long idBook = 0L;
-        List<Book> result = new ArrayList<Book>();
         String SQL_SELECT = "INSERT INTO BOOKS (ISBN, TITLE, AUTHOR, EDITIONYEAR, PRICE) VALUES (?,?,?,?, ?) ";
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/bookshop?useUnicode=true\n" +
                 "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false\n" +
                 "serverTimezone=UTC", "root", "");
@@ -27,9 +23,7 @@ public class JdbcDao {
             preparedStatement.setString(3, author);
             preparedStatement.setString(4, author);
             preparedStatement.setBigDecimal(5, new BigDecimal(price));
-
             idBook = new Long(preparedStatement.executeUpdate());
-
 
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -38,7 +32,6 @@ public class JdbcDao {
             System.err.format("Exception: %s\n%s", e.getMessage());
         }
         return  idBook;
-
     }
 
     public List<Book> getAllBooks() throws Exception {

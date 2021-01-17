@@ -13,7 +13,7 @@
 		<common.version>3.11</common.version>
         <junit.version>4.13.1</junit.version>
 		 <hamcrest.version>1.3</hamcrest.version>
-        <mysqlconnector.version>8.0.16</mysqlconnector.version>
+        <mysqlconnector.version>8.0.22</mysqlconnector.version>
 		
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -64,6 +64,7 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysqlconnector.version}</version>
             </dependency>
+
 
             <dependency>
 			  <groupId>org.hamcrest</groupId>

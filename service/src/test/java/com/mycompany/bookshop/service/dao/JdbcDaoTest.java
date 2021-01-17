@@ -31,5 +31,17 @@ public class JdbcDaoTest {
         }
     }
 
+    @Test
+    public void testInsertBooks()  {
+        try {
+            jdbcDao.addBook("978-2-263-16102-5","L'atlas du vélo","Claude Droussent", "2019", 24.90);
+            List<Book> books = jdbcDao.getAllBooks();
+            assertThat(books, is(notNullValue()));
+            assertThat(books.size(), is(1));
+        } catch (Exception e) {
+            fail("Unable to reach the database : " + e.getMessage());
+        }
+    }
+
 
 }
