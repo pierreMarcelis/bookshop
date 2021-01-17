@@ -1,5 +1,5 @@
 package com.mycompany.bookshop.service.dao;
-import com.mycompany.bookshop.domain.Book;
+
 import com.mycompany.bookshop.service.util.BookHelper;
 
 import java.math.BigDecimal;

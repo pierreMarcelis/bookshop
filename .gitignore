@@ -6,3 +6,7 @@ bookshoproot.iml
 /service/target
 /service/service.iml
 .idea
+/*.iml
+/dataImporter/*.iml
+/dataImporter/target
+/domain/target
