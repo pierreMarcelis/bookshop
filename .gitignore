@@ -10,3 +10,4 @@ bookshoproot.iml
 /dataImporter/*.iml
 /dataImporter/target
 /domain/target
+/core/core.iml

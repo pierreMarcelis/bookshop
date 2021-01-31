@@ -16,63 +16,94 @@
   <url>http://maven.apache.org</url>
 
 	<dependencies>
+        <dependency>
+            <groupId>com.mycompany.bookshop</groupId>
+            <artifactId>domain</artifactId>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <!--
+                <dependency>
+                    <groupId>com.oracle.database.jdbc</groupId>
+                    <artifactId>ojdbc8</artifactId>
+                </dependency>
+        -->
 
-        <dependency>
-            <groupId>com.oracle.database.jdbc</groupId>
-            <artifactId>ojdbc8</artifactId>
-        </dependency>
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </dependency>
 
-        <dependency>
-            <groupId>com.mycompany.bookshop</groupId>
-            <artifactId>domain</artifactId>
-        </dependency>
+                <dependency>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-all</artifactId>
+                </dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
+            </dependencies>
+            <build>
 
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-        </dependency>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/lib</directory>
+                    </resource>
+                </resources>
 
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <includes>
-                        <include>**/domain/*</include>
-                    </includes>
-                </configuration>
-            </plugin>
+                <plugins>
 
-            <plugin>
-                <artifactId> maven-war-plugin </artifactId>
-                <configuration>
-                    <packagingExcludes>
-                        WEB-INF / lib / commons-logging - *. Jar,
-                        % regex [WEB-INF / lib / log4j - (?! over-slf4j). *. jar]
-                    </packagingExcludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-</project>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>**/domain/*</include>
+                                <include>${basedir}/lib/*</include>
+
+                            </includes>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <artifactId> maven-war-plugin </artifactId>
+                        <configuration>
+                            <packagingExcludes>
+                                WEB-INF / lib / commons-logging - *. Jar,
+                                % regex [WEB-INF / lib / log4j - (?! over-slf4j). *. jar]
+                            </packagingExcludes>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <executions>
+                        <execution>
+                            <id>copy-resources</id>
+                            <!-- here the phase you need -->
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${basedir}/target/extra-resources</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>src/main/resources</directory>
+                                        <filtering>true</filtering>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+
+
+            </build>
+        </project>
